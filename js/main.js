@@ -21,90 +21,140 @@ function pictureUpdate(vehicleType) {
   if (vehicleType === "bicycle1") {
     return "assets/bicycle1.jpg";
   }
+
   if (vehicleType === "bicycle2") {
     return "assets/bicycle2.jpg";
   }
+
   if (vehicleType === "bluecar") {
     return "assets/bluecar.jpg";
   }
+
   if (vehicleType === "redcar") {
     return "assets/redcar.jpg";
   }
+
   if (vehicleType === "redmotorcycle") {
     return "assets/redmotorcycle.jpg";
   }
+
   if (vehicleType === "bluewmotorcycle") {
     return "assets/bluewmotorcycle.jpg";
   }
+
+  return "";
 }
+
 function inputVerification() {
-  if (VehicleName.value === "" || VehicleName.value.trim() === "") {
+  if (VehicleName.value.trim() === "") {
     alert("Please enter a vehicle name.");
     return false;
   }
+
   if (VehicleType.value === "") {
     alert("Please enter a vehicle type.");
     return false;
   }
+
   if (
-    VehiclePrice.value === "" ||
+    VehiclePrice.value.trim() === "" ||
     isNaN(VehiclePrice.value) ||
-    VehiclePrice.value <= 0
+    Number(VehiclePrice.value) <= 0
   ) {
-    alert("Please enter a vehicle price.");
+    alert("Please enter a valid vehicle price.");
     return false;
   }
+
   return true;
 }
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   if (!inputVerification()) {
-    let emptySection = document.querySelector(".empty-state-section");
-    if (emptySection) {
-      emptySection.style.display = "none";
-    } else {
-      emptySection.innerHTML = `
-<div class="vehicle-card">
+    return;
+  }
+
+  let vehicle = new Vehicle(
+    VehicleName.value.trim(),
+    VehicleType.value,
+    Number(VehiclePrice.value)
+  );
+
+  vehicleList.push(vehicle);
+
+  let emptySection = document.querySelector(".empty-state-section");
+
+  if (emptySection) {
+    emptySection.style.display = "none";
+  }
+
+  let vehicleContainer = document.querySelector(".vehicle-list");
+
+  if (!vehicleContainer) {
+    vehicleContainer = document.createElement("div");
+    vehicleContainer.classList.add("vehicle-list");
+    form.parentElement.appendChild(vehicleContainer);
+  }
+
+  let vehicleCard = document.createElement("div");
+  vehicleCard.classList.add("vehicle-card");
+
+  vehicleCard.innerHTML = `
     <div class="image-wrapper">
-      <img src=${pictureUpdate(VehicleType.value)} alt="${VehicleName.value}" class="vehicle-image" />
+      <img 
+        src="${pictureUpdate(vehicle.type)}" 
+        alt="${vehicle.name}" 
+        class="vehicle-image"
+      />
       <span class="status-badge badge-available">
         <i class="fa-solid fa-circle-check"></i> Available
       </span>
     </div>
+
     <div class="card-content">
-      <h3 class="vehicle-title">${VehicleName.value}</h3>
+      <h3 class="vehicle-title">${vehicle.name}</h3>
+
       <div class="info-row">
         <i class="fa-solid fa-car"></i>
-        <span>${VehicleType.value}</span>
+        <span>${vehicle.type}</span>
       </div>
+
       <div class="info-row">
         <i class="fa-solid fa-coins"></i>
-        <span class="price-text">${VehiclePrice.value} MAD / day</span>
+        <span class="price-text">${vehicle.price} MAD / day</span>
       </div>
+
       <div class="details-row">
         <span class="feature-pill">
           <i class="fa-solid fa-snowflake"></i> Has AC: Yes
         </span>
+
         <div class="days-picker">
-          <label for="days">Rental days</label>
-          <input type="number" id="days" value="1" min="1" />
+          <label>Rental days</label>
+          <input type="number" class="rental-days" value="1" min="1" />
         </div>
       </div>
+
       <div class="card-actions">
-        <button class="btn btn-rent">
+        <button type="button" class="btn btn-rent">
           <i class="fa-solid fa-lock"></i> Rent
         </button>
-        <button class="btn btn-return">
+
+        <button type="button" class="btn btn-return">
           <i class="fa-solid fa-rotate-left"></i> Return
         </button>
-        <button class="btn btn-delete">
+
+        <button type="button" class="btn btn-delete">
           <i class="fa-solid fa-trash-can"></i> Delete
         </button>
       </div>
     </div>
-  </div>
-      `;
-    }
-  }
+  `;
+
+  vehicleContainer.appendChild(vehicleCard);
+
+  VehicleName.value = "";
+  VehicleType.value = "";
+  VehiclePrice.value = "";
 });

@@ -1,0 +1,148 @@
+.vehicle-card {
+  width: 360px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e1e8ed;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background-color: #f3f4f6;
+}
+.vehicle-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.badge-available {
+  background-color: #e6f8f0;
+  color: #10b981;
+  border: 1px solid #a7f3d0;
+}
+.card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.vehicle-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.info-row i {
+  width: 16px;
+  text-align: center;
+}
+
+.price-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.feature-pill {
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.days-picker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.days-picker input {
+  width: 45px;
+  padding: 3px 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.btn {
+  flex: 1;
+  padding: 9px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-rent {
+  background-color: #10b981;
+  color: #ffffff;
+}
+.btn-rent:hover {
+  background-color: #059669;
+}
+
+.btn-return {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+.btn-return:hover {
+  background-color: #2563eb;
+}
+
+.btn-delete {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+.btn-delete:hover {
+  background-color: #dc2626;
+}
