@@ -1,0 +1,51 @@
+@media (max-width: 768px) {
+  .nav-container {
+    justify-content: space-evenly;
+  }
+  .brand-logo span {
+    display: flex;
+    flex-direction: column;
+    margin-right: 14px;
+  }
+  .brand-logo i {
+    font-size: 20px;
+  }
+  .nav-links li {
+    font-size: 12px;
+  }
+  .top-nav {
+    padding: 0px 10px;
+  }
+  .nav-left {
+    gap: 4px;
+  }
+  .nav-slogan {
+    flex-direction: column;
+    gap: 0px;
+    font-size: 10px;
+  }
+  .add-vehicle-section {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .social-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-features {
+    flex-wrap: wrap;
+  }
+}

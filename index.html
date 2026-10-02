@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <title>RIFRide -- Vehicle Rental</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="top-nav">
+        <div class="nav-container">
+          <div class="nav-left">
+            <div class="brand-logo">
+              <i class="fa-solid fa-car-rear"></i>
+              <span>RIFE. <strong>Ride</strong></span>
+            </div>
+            <ul class="nav-links">
+              <li>
+                <a href="" class="active"
+                  ><i class="fa-solid fa-house"></i> Home</a
+                >
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa-solid fa-circle-exclamation"></i> About
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="nav-slogan">
+            <span>Drive Your Freedom</span>
+            <i class="fa-solid fa-car-side"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Rent the Perfect <span class="highlight">Vehicle</span>
+            </h1>
+            <p class="hero-description">
+              Cars, Motorcycles and Bicycles – easy, fast and affordable.<br />
+              Choose your ride, set your days, and hit the road!
+            </p>
+            <div class="hero-badges">
+              <div class="badge-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Safe & Reliable</span>
+              </div>
+              <div class="badge-item">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Affordable Prices</span>
+              </div>
+              <div class="badge-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Multiple Vehicle Types</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="add-vehicle-section">
+        <div class="form-card">
+          <div class="form-header">
+            <div class="header-icon-box">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="header-text">
+              <h2>Add a Vehicle</h2>
+              <p>
+                Fill in the details to add a new vehicle to the rental fleet.
+              </p>
+            </div>
+          </div>
+          <form class="vehicle-form" id="addVehicleForm">
+            <div class="form-group flex-grow-2">
+              <label for="vehicleName">Vehicle Name</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-car input-icon"></i>
+                <input
+                  type="text"
+                  id="vehicleName"
+                  name="vehicleName"
+                  placeholder="e.g. Toyota Corolla"
+                />
+              </div>
+            </div>
+            <div class="form-group flex-grow-1">
+              <label for="vehicleType">Type</label>
+              <div class="input-wrapper select-wrapper">
+                <i class="fa-solid fa-tag input-icon"></i>
+                <select id="vehicleType" name="vehicleType">
+                  <option value="" disabled selected hidden>Select type</option>
+                  <option value="Car">Car</option>
+                  <option value="Motorcycle">Motorcycle</option>
+                  <option value="Bicycle">Bicycle</option>
+                </select>
+                <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+              </div>
+            </div>
+            <div class="form-group flex-grow-1">
+              <label for="dailyPrice">Daily Price (MAD)</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-coins input-icon"></i>
+                <input
+                  type="number"
+                  id="dailyPrice"
+                  name="dailyPrice"
+                  placeholder="e.g. 250"
+                />
+              </div>
+            </div>
+            <div class="form-group button-group">
+              <button type="submit" class="btn-add-vehicle">
+                <i class="fa-solid fa-plus"></i>
+                Add Vehicle
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="filter-panel">
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-icon text-blue">
+                <i class="fa-solid fa-car"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Total Vehicles</span>
+                <span class="stat-value text-blue">0</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon text-green">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Available Vehicles</span>
+                <span class="stat-value text-green">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="filter-controls">
+            <div class="filter-group">
+              <div class="filter-title">
+                <i class="fa-solid fa-filter"></i>
+                <span>Filter by:</span>
+              </div>
+              <div class="pill-group">
+                <button type="button" class="pill-btn">All</button>
+                <button type="button" class="pill-btn">Car</button>
+                <button type="button" class="pill-btn">Motorcycle</button>
+                <button type="button" class="pill-btn">Bicycle</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <div class="filter-title">
+                <span>Availability:</span>
+              </div>
+              <div class="pill-group">
+                <button type="button" class="pill-btn">All</button>
+                <button type="button" class="pill-btn">Available</button>
+                <button type="button" class="pill-btn">Rented</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="empty-state-section">
+        <div class="empty-state-card">
+          <div class="empty-state-icon-wrapper">
+            <i class="fa-solid fa-car-tunnel"></i>
+          </div>
+          <h3 class="empty-state-title">No Vehicles Available</h3>
+          <p class="empty-state-description">
+            There are currently no vehicles added to the fleet or matching your
+            filters. <br />
+            Use the form above to add a new vehicle and get started!
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="brand-title">
+            <i class="fa-solid fa-car-side"></i>
+            <span>RIFE. <strong>Ride</strong></span>
+          </div>
+          <p class="brand-tagline">Your journey, our priority.</p>
+        </div>
+        <div class="footer-features">
+          <div class="feature-item">
+            <i class="fa-solid fa-car"></i>
+            <div class="feature-text">
+              <strong>Wide Selection</strong>
+              <span>Cars, Motorcycles, Bicycles</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <div class="feature-text">
+              <strong>Easy Booking</strong>
+              <span>Simple & Fast</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div class="feature-text">
+              <strong>Secure Payments</strong>
+              <span>Your safety matters</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-social">
+          <div class="social-links">
+            <a href="" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="" aria-label="YouTube"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </div>
+          <p class="copyright">
+            &copy; 2025 Vehicle Rental. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="js/particles.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>
