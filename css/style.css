@@ -341,6 +341,11 @@ body {
 .btn-add-vehicle:active {
   transform: scale(0.98);
 }
+#error-message{
+    padding: 20px 20px 0px 5px;
+    color: red;
+    transition: all 0.3s ease;
+}
 .filter-panel {
   width: 100%;
   max-width: 420px;
@@ -480,7 +485,6 @@ body {
   margin: 30px auto;
   padding: 0 20px;
 }
-
 .empty-state-card {
   border-radius: 16px;
   padding: 50px 20px;

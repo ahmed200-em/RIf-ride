@@ -1,8 +1,8 @@
 let form = document.getElementById("addVehicleForm");
-let VehicleName = document.getElementById("vehicleName");
-let VehicleType = document.getElementById("vehicleType");
-let VehiclePrice = document.getElementById("dailyPrice");
-
+let vehicleName = document.getElementById("vehicleName");
+let vehicleType = document.getElementById("vehicleType");
+let vehiclePrice = document.getElementById("dailyPrice");
+let errorMessage = document.getElementById("error-message");
 let vehicleList = [];
 
 class Vehicle {
@@ -13,148 +13,131 @@ class Vehicle {
   }
 }
 
-class cars extends Vehicle {}
-class motorcycle extends Vehicle {}
-class bicycle extends Vehicle {}
-
-function pictureUpdate(vehicleType) {
-  if (vehicleType === "bicycle1") {
-    return "assets/bicycle1.jpg";
+class Car extends Vehicle {
+  constructor(name, type, price) {
+    super(name, type, price);
   }
 
-  if (vehicleType === "bicycle2") {
-    return "assets/bicycle2.jpg";
-  }
+}
 
-  if (vehicleType === "bluecar") {
-    return "assets/bluecar.jpg";
+class Motorcycle extends Vehicle {
+  constructor(name, type, price) {
+    super(name, type, price);
   }
+}
 
-  if (vehicleType === "redcar") {
-    return "assets/redcar.jpg";
+class Bicycle extends Vehicle {
+  constructor(name, type, price) {
+    super(name, type, price);
   }
-
-  if (vehicleType === "redmotorcycle") {
-    return "assets/redmotorcycle.jpg";
-  }
-
-  if (vehicleType === "bluewmotorcycle") {
-    return "assets/bluewmotorcycle.jpg";
-  }
-
-  return "";
 }
 
 function inputVerification() {
-  if (VehicleName.value.trim() === "") {
-    alert("Please enter a vehicle name.");
+  if (vehicleName.value.trim() === "") {
+    errorMessage.textContent = "! Vehicle name is required";
     return false;
-  }
-
-  if (VehicleType.value === "") {
-    alert("Please enter a vehicle type.");
+  } else if (vehicleType.value === "") {
+    errorMessage.textContent = "! Vehicle type is required";
     return false;
-  }
-
-  if (
-    VehiclePrice.value.trim() === "" ||
-    isNaN(VehiclePrice.value) ||
-    Number(VehiclePrice.value) <= 0
+  } else if (
+    vehiclePrice.value === "" ||
+    isNaN(vehiclePrice.value) ||
+    Number(vehiclePrice.value) <= 0
   ) {
-    alert("Please enter a valid vehicle price.");
+    errorMessage.textContent =
+      "! Vehicle price is required and must be a positive number";
     return false;
+  } else {
+    errorMessage.textContent = "";
+    return true;
   }
-
-  return true;
 }
+function addVehicle() {
+  let name = vehicleName.value.trim();
+  let type = vehicleType.value;
+  let price = parseFloat(vehiclePrice.value);
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  if (!inputVerification()) {
-    return;
+  if (inputVerification()) {
+    if (type === "Car") {
+      let newCar = new Car(name, type, price);
+      vehicleList.push(newCar);
+    } else if (type === "Motorcycle") {
+      let newMotorcycle = new Motorcycle(name, type, price);
+      vehicleList.push(newMotorcycle);
+    } else if (type === "Bicycle") {
+      let newBicycle = new Bicycle(name, type, price);
+      vehicleList.push(newBicycle);
+    }
   }
-
-  let vehicle = new Vehicle(
-    VehicleName.value.trim(),
-    VehicleType.value,
-    Number(VehiclePrice.value)
-  );
-
-  vehicleList.push(vehicle);
-
-  let emptySection = document.querySelector(".empty-state-section");
-
-  if (emptySection) {
-    emptySection.style.display = "none";
+}
+function updateCardImages() {
+  if (vehicleType.value === "Car") {
+    return "assets/redcar.jpg";
   }
-
-  let vehicleContainer = document.querySelector(".vehicle-list");
-
-  if (!vehicleContainer) {
-    vehicleContainer = document.createElement("div");
-    vehicleContainer.classList.add("vehicle-list");
-    form.parentElement.appendChild(vehicleContainer);
+  if (vehicleType.value === "Motorcycle") {
+    return "assets/redmotocycle.jpg";
   }
-
-  let vehicleCard = document.createElement("div");
-  vehicleCard.classList.add("vehicle-card");
-
-  vehicleCard.innerHTML = `
+  if (vehicleType.value === "Bicycle") {
+    return "assets/bicycle1.jpg";
+  }
+}
+function createVehicleCard(vehicle) {
+  let card = document.createElement("div");
+  let cards = document.createElement("div");
+  let emptydiv = document.getElementById("empty-state");
+  let emptysection = document.querySelector(".empty-state-section");
+  emptydiv.style.display = "none";
+  card.className = "vehicle-card";
+  cards.className = "vehicle-cards";
+  cards.appendChild(card);
+  emptysection.appendChild(cards);
+  card.innerHTML = `
     <div class="image-wrapper">
-      <img 
-        src="${pictureUpdate(vehicle.type)}" 
-        alt="${vehicle.name}" 
-        class="vehicle-image"
-      />
+      <img src="${updateCardImages()}" alt="${vehicle.name}" class="vehicle-image" />
       <span class="status-badge badge-available">
         <i class="fa-solid fa-circle-check"></i> Available
       </span>
     </div>
-
     <div class="card-content">
       <h3 class="vehicle-title">${vehicle.name}</h3>
-
       <div class="info-row">
         <i class="fa-solid fa-car"></i>
         <span>${vehicle.type}</span>
       </div>
-
       <div class="info-row">
         <i class="fa-solid fa-coins"></i>
         <span class="price-text">${vehicle.price} MAD / day</span>
       </div>
-
       <div class="details-row">
         <span class="feature-pill">
           <i class="fa-solid fa-snowflake"></i> Has AC: Yes
         </span>
-
         <div class="days-picker">
-          <label>Rental days</label>
-          <input type="number" class="rental-days" value="1" min="1" />
+          <label for="days">Rental days</label>
+          <input type="number" id="days" value="1" min="1" />
         </div>
       </div>
-
       <div class="card-actions">
-        <button type="button" class="btn btn-rent">
+        <button class="btn btn-rent">
           <i class="fa-solid fa-lock"></i> Rent
         </button>
-
-        <button type="button" class="btn btn-return">
+        <button class="btn btn-return">
           <i class="fa-solid fa-rotate-left"></i> Return
         </button>
-
-        <button type="button" class="btn btn-delete">
+        <button class="btn btn-delete">
           <i class="fa-solid fa-trash-can"></i> Delete
         </button>
       </div>
     </div>
   `;
+  return card;
+}
 
-  vehicleContainer.appendChild(vehicleCard);
-
-  VehicleName.value = "";
-  VehicleType.value = "";
-  VehiclePrice.value = "";
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (inputVerification()) {
+    console.log("Form is valid!");
+    addVehicle();
+    createVehicleCard(vehicleList[vehicleList.length - 1]);
+  }
 });
